@@ -1,0 +1,73 @@
+.toggle {
+  position: relative;
+
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+
+  height: 43px;
+  width: 174px;
+
+  border-radius: 25px;
+  background: #2B2B2B;
+  -webkit-box-shadow: 0 1px 14px 0 rgba(0,0,0,0.10);
+          box-shadow: 0 1px 14px 0 rgba(0,0,0,0.10);
+  
+  cursor: pointer;
+}
+
+.toggle__circle {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  right: 5px;
+
+  width: 33px;
+  height: 33px;
+
+  border-radius: 50%;
+  background: #EBEBEB;
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0,0,0,0.50);
+          box-shadow: 0 2px 4px 0 rgba(0,0,0,0.50);
+
+  -webkit-transition: all .2s;
+
+  transition: all .2s;
+}
+
+.toggle__new {
+  position: absolute;
+  left: 24px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.toggle__progress {
+  display: none;
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.active .toggle__progress {
+  display: block;
+}
+
+.active .toggle__new {
+  display: none;
+}
+
+.active .toggle__circle {
+  right: 137px;
+}

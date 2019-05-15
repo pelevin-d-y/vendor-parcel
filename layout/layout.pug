@@ -1,0 +1,32 @@
+- var title = 'title'
+
+//- layout.pug
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    block styles
+      link(rel="stylesheet" href="./src/styles/styles.scss")
+  body
+    .page
+      block header
+        header.header
+          .header__container.container
+            .header__burger
+            .header__logo
+              .header__logo-img
+              .header__logo-text
+                | Vendor Check-In (GAN)
+            .header__date
+              | 5/10/19
+          .menu
+            ul.menu__list
+              li.menu__item.scheduled
+                a(href='#') Scheduled
+              li.menu__item.unscheduled
+                a(href='#') Unscheduled
+              li.menu__item.logout
+                a(href='#') Log Out
+      block content
+    block scripts
+      script(src='./src/js/index.js')

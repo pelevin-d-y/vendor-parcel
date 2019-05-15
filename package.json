@@ -1,0 +1,26 @@
+{
+  "name": "parcel-grid",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel index.pug search.pug",
+    "build": "parcel build index.pug parcel --public-url ./",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cssnano": "^4.1.10",
+    "parcel-bundler": "^1.12.3",
+    "pug": "^2.0.3",
+    "sass": "^1.19.0"
+  },
+  "dependencies": {
+    "autoprefixer": "^9.5.1",
+    "jquery": "^3.4.1",
+    "normalize.css": "^8.0.1",
+    "postcss-modules": "^1.4.1"
+  }
+}
