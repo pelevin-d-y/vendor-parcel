@@ -1,0 +1,68 @@
+.login {
+  padding-top: 48px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.login input {
+  height: 50px;
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+
+  border: none;
+  background: #4b4b4b;
+  font-family: Helvetica;
+  font-size: 18px;
+  font-weight: 300;
+  color: #FFFFFF;
+  letter-spacing: 0;
+}
+
+.login__input-select-wrapper {
+  width: 50%;
+}
+
+.login__input-wrapper .choices__inner {
+  background: #4b4b4b;
+  border: none;
+}
+
+.login__input-wrapper .choices__list {
+  background: #4b4b4b;
+}
+
+.login__input-wrapper .is-highlighted {
+  background: #4b4b4b !important;
+}
+
+.login__input-wrapper .choices__item {
+  font-family: Helvetica;
+  font-size: 18px;
+  color: #FFFFFF;
+  letter-spacing: 0;
+}
+
+.login__input-wrapper .choices__inner {
+  border-radius: 6px;
+  height: 50px; 
+  padding-top: 10px;
+  padding-left: 16px;
+
+  font-family: Helvetica;
+  font-size: 18px;
+  color: #FFFFFF;
+  letter-spacing: 0;
+}
+
+.login__input-wrapper .choices__placeholder {
+  opacity: 0.2;
+}
+
+.login-btn {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

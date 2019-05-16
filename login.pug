@@ -1,0 +1,24 @@
+extends layout/default.pug
+
+block content
+  header.header
+    .header__container.container
+      .header__logo.center
+        .header__logo-img
+        .header__logo-text
+          | Vendor Check-In
+  main.main.container
+    form.login
+      .login__input-wrapper
+        input(type="text" placeholder="Email")
+      .login__input-wrapper
+        input(type="text" placeholder="Password")
+      .login__input-wrapper.login__input-select-wrapper
+        select.login-select
+          option(value="location" placeholder) Location
+          option(value="location1") location1
+          option(value="location2") location2
+          option(value="location3") location3
+          option(value="location4") location4
+      button.btn.login-btn
+        | Next

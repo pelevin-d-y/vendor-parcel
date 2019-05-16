@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "parcel index.pug search.pug",
+    "dev": "parcel index.pug",
     "build": "parcel build index.pug parcel --public-url ./",
     "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "autoprefixer": "^9.5.1",
+    "choices.js": "^7.0.0",
     "jquery": "^3.4.1",
     "normalize.css": "^8.0.1",
     "postcss-modules": "^1.4.1",
