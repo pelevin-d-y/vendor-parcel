@@ -1,6 +1,7 @@
 'use strict';
 
 import Choices from 'choices.js'
+import rangeSlider from 'rangeslider-pure'
 
 var toggle = document.querySelector('.toggle');
 if (toggle) {
@@ -82,5 +83,11 @@ if (truckOptions.length) {
       stepButton.classList.remove('btn__blue')
     }
   } 
-
 } 
+
+const slider = document.querySelector('.temperature__range')
+
+if (slider) {
+  console.log('rangeSlider', rangeSlider)
+  // rangeSlider.create(slider)
+}

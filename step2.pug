@@ -1,0 +1,33 @@
+extends layout/layout.pug
+
+block content
+  
+  main.main.container
+    .truck.special.step
+      .truck__time 10:55
+      .truck__name 8276 - AUSA Dry Groc(GC PDC)
+      .truck__temperature Chill | Frozen
+    .truck-options
+      .temperature
+        .temperature__text Temperature
+        input.temperature__range(type="range" min="0" max="100" value="20" step="1")
+        .temperature__celsius
+          span.temperature__celsius-digits
+            | --
+          sup o
+      .conditions
+        .conditions__select-wrapper
+          select.conditions__select(data-name="conditions")
+            option(value="placeholder" placeholder) Select Conditions
+            option(value="conditions1") Conditions1
+            option(value="conditions2") Conditions2
+            option(value="conditions3") Conditions3
+            option(value="conditions4") Conditions4
+    .footer
+      a.back(href="#")
+        span.back__icon
+      .footer__buttons
+        button.btn(href="#")
+          | Accept
+        button.btn(href="#")
+          | Reject
