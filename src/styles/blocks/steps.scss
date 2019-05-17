@@ -1,0 +1,73 @@
+.truck.step {
+  margin-bottom: 0;
+}
+
+.truck-options {
+  width: 100%;
+  padding-top: 36px;
+  padding-bottom: 36px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  background: #4b4b4b;
+}
+
+.truck-options__selects {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.truck-options__select-wrapper {
+  width: 47%;
+}
+
+.truck-options__select-wrapper .choices__inner {
+  background: #333333;
+}
+
+.truck-options__select-wrapper .choices__list {
+  background: #333333;
+}
+
+.footer {
+  position: relative;
+  width: 100%;
+}
+
+.back {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+
+  width: 50px;
+  height: 50px;
+
+  background: #333333;
+  border-radius: 8px;
+}
+
+.back__icon {
+  display: block;
+  width: 17px;
+  height: 24px;
+  margin-right: 3px;
+
+  background: url('../images/back.svg') no-repeat center/contain;
+}
+
+.footer__buttons {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.footer .btn {
+  margin-left: 20px;
+  margin-right: 20px;
+}

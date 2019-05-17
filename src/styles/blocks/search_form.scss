@@ -4,16 +4,9 @@
 }
 
 .search-form__inputs {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row nowrap;
-          flex-flow: row nowrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  flex-flow: row nowrap;
+  justify-content: space-between;
 }
 
 .search-form__input {
@@ -22,7 +15,7 @@
 
   background: #4B4B4B;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
 
   font-size: 18px;
   font-weight: 300;

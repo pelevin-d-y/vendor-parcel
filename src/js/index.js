@@ -40,7 +40,6 @@ if (switcherRightArrow || switcherLeftArrow) {
 
 var burger = document.querySelector('.header__burger')
 var header = document.querySelector('.header')
-
 if (burger) {
   burger.addEventListener('click', function() {
     header.classList.toggle('menu-open')
@@ -48,17 +47,40 @@ if (burger) {
 }
 
 const select = document.querySelector('.login-select')
-
 if (select) {
-  const example = new Choices(select, {
-      searchEnabled: false,
-      placeholderValue: 'Location',
-    });
-  
-  // example.setChoices([
-  //   {value: 'location1', label: 'location1'},
-  //   {value: 'location2', label: 'location2', selected: true},
-  //   {value: 'location3', label: 'location3'},
-  // ]);
-
+  new Choices(select, {
+    searchEnabled: false
+  });
 }
+
+const truckOptions = Array.from(document.querySelectorAll('.truck-options__select'))
+if (truckOptions.length) {
+  new Choices('.truck-options__select', {
+    searchEnabled: false
+  })
+
+  let truckValues = {}
+    
+  truckOptions.forEach(option => {
+    const key = option.dataset.name
+    truckValues[key] = option.value
+    option.addEventListener('choice', checkSelected)
+  })
+
+  function checkSelected(event) {
+    const key = event.target.dataset.name
+    truckValues[key] = event.detail.choice.value
+
+    let isSelected = Object.values(truckValues).indexOf('placeholder') === -1
+    const stepButton = document.querySelector('.step1-button')
+
+    if (isSelected) {
+      stepButton.classList.remove('disabled')
+      stepButton.classList.add('btn__blue')
+    } else {
+      stepButton.classList.add('disabled')
+      stepButton.classList.remove('btn__blue')
+    }
+  } 
+
+} 
