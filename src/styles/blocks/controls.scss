@@ -11,6 +11,7 @@
       -ms-flex-pack: center;
           justify-content: center;
   width: 100%;
+  margin-bottom: 0;
 }
 
 .controls__wrapper {
@@ -43,9 +44,7 @@
 .controls__search {
   position: absolute;
   right: 20px;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  top: 12px;
 
   display: block;
   border: none;

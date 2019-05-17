@@ -1,12 +1,19 @@
 .controls
   .controls__wrapper
     .toggle
+      select.toggle__select.is-hidden
+        option(value="new") New
+        option(value="in-progres") In Progress
       .toggle__circle
       span.toggle__new New
       span.toggle__progress In Progress
     .switcher
+      select.switcher__select.is-hidden
+        option(value="today") Today
+        option(value="tomorrow") Tomorrow
+        option(value="yesterday") Yesterday
       .switcher__left.arrow
       .switcher__types
         span.switcher__type Today
       .switcher__right.arrow
-  a.controls__search(href='/')
+  .controls__search

@@ -3,42 +3,76 @@
 import Choices from 'choices.js'
 import rangeSlider from 'rangeslider-pure'
 
+// toggle New In Progress
 var toggle = document.querySelector('.toggle');
+const toggleSelect = document.querySelector('.toggle__select')
+
 if (toggle) {
+  toggleSelect.value = 'new'
+  let toggleValue
   toggle.addEventListener('click', function() {
     toggle.classList.toggle('active');
+    
+    if (toggle.classList.contains('active')) {
+      toggleValue = 'in-progres'
+    } else {
+      toggleValue = 'new'
+    }
+    toggleSelect.value = toggleValue
   });
+
+
 }
 
-var switcherRightArrow = document.querySelector('.switcher__right');
-var switcherLeftArrow = document.querySelector('.switcher__left');
-var switcherType = document.querySelector('.switcher__type');
+const searchForm = document.querySelector('.search-form')
+if (searchForm) {
+  const searchOpenBtn = document.querySelector('.controls__search')
+  searchOpenBtn.addEventListener('click', () => {
+    searchForm.classList.toggle('open')
+  })
+}
 
-var switchDay = function(dir) {
-  switch (true) {
-    case switcherType.textContent === 'Today':
-      switcherType.textContent = dir === 'next' ? 'Tomorrow' : 'Yesterday'
-      break;
-    case switcherType.textContent === 'Tomorrow':
-      switcherType.textContent = dir === 'next' ? 'Yesterday' : 'Today'
-      break;
-    case switcherType.textContent === 'Yesterday':
-      switcherType.textContent = dir === 'next' ? 'Today' : 'Tomorrow'
-      break;
-    default:
-      break;
+// day switcer
+var switcher = document.querySelector('.switcher');
+
+if (switcher) {
+  var switcherRightArrow = document.querySelector('.switcher__right');
+  var switcherLeftArrow = document.querySelector('.switcher__left');
+  var switcherType = document.querySelector('.switcher__type');
+  const switcherSelect = document.querySelector('.switcher__select')
+  switcherSelect.value = 'today'
+  var switchDay = function(dir) {
+    switch (true) {
+      case switcherType.textContent === 'Today':
+        switcherType.textContent = dir === 'next' ? 'Tomorrow' : 'Yesterday'
+        switcherSelect.value = dir === 'next' ? 'tomorrow' : 'yesterday'
+        break;
+      case switcherType.textContent === 'Tomorrow':
+        switcherType.textContent = dir === 'next' ? 'Yesterday' : 'Today'
+        switcherSelect.value = dir === 'next' ? 'yesterday' : 'today'
+        break;
+      case switcherType.textContent === 'Yesterday':
+        switcherType.textContent = dir === 'next' ? 'Today' : 'Tomorrow'
+        switcherSelect.value = dir === 'next' ? 'today' : 'tomorrow'
+        break;
+      default:
+        break;
+    }
+
+    
+  }
+  if (switcherRightArrow || switcherLeftArrow) {
+    switcherRightArrow.addEventListener('click', function() {
+      switchDay('next');
+    })
+  
+    switcherLeftArrow.addEventListener('click', function() {
+      switchDay('prev');
+    })
   }
 }
-if (switcherRightArrow || switcherLeftArrow) {
-  switcherRightArrow.addEventListener('click', function() {
-    switchDay('next');
-  })
 
-  switcherLeftArrow.addEventListener('click', function() {
-    switchDay('prev');
-  })
-}
-
+// menu
 var burger = document.querySelector('.header__burger')
 var header = document.querySelector('.header')
 if (burger) {
@@ -47,12 +81,16 @@ if (burger) {
   })
 }
 
+
+// login select
 const select = document.querySelector('.login-select')
 if (select) {
   new Choices(select, {
     searchEnabled: false
   });
 }
+
+// step1 truck selects
 
 const truckOptions = Array.from(document.querySelectorAll('.truck-options__select'))
 if (truckOptions.length) {
@@ -85,9 +123,86 @@ if (truckOptions.length) {
   } 
 } 
 
+// slider range
 const slider = document.querySelector('.temperature__range')
-
 if (slider) {
-  console.log('rangeSlider', rangeSlider)
-  // rangeSlider.create(slider)
+  const celsios = document.querySelector('.temperature__celsius-digits')
+  const accept = document.querySelector('.btn__accept')
+  let goodFrozen = 35
+
+  rangeSlider.create(slider, {
+    onSlide: function(position, value) {
+      celsios.textContent = position
+      if (goodFrozen >= position) {
+        accept.classList.remove('disabled')
+        accept.classList.remove('btn__red')
+        accept.classList.add('btn__blue')
+      } else if (goodFrozen < position) {
+        accept.classList.remove('disabled')
+        accept.classList.remove('btn__blue')
+        accept.classList.add('btn__red')
+      }
+    }
+  })
+}
+
+//conditions
+
+const conditions = document.querySelector('.conditions')
+if (conditions) {
+  const select = document.querySelector('.conditions__select')
+  const customSelectDropdown = document.querySelector('.multiple-select__dropdown')
+  const selectPlaceholder =  document.querySelector('.multiple-select__placeholder')
+  let checkedItems = []
+
+  const createDropdownItem = (option, index) => {
+    let item = document.createElement('div');
+    item.dataset.value = option.value
+    item.textContent = option.textContent
+    item.className = `multiple-select__dropdown-item multiple-select__dropdown-item-${index}`
+    customSelectDropdown.appendChild(item)
+
+    item.addEventListener('click', () => {
+      if (item.classList.contains('checked')) {
+        item.classList.remove('checked')
+        checkedItems.splice(checkedItems.indexOf(item.textContent), 1)
+        document.querySelector(`[value=${item.dataset.value}]`).remove()
+
+      } else {
+        item.classList.add('checked')
+        const isPresent = checkedItems.indexOf(item.textContent) !== -1
+        checkedItems = isPresent ? checkedItems : [...checkedItems, item.textContent] 
+        
+        let optionEl = document.createElement('option');
+        optionEl.value = item.dataset.value
+        optionEl.setAttribute('selected', 'selected')
+        optionEl.textContent = item.textContent
+        select.appendChild(optionEl)
+      }
+
+      selectPlaceholder.textContent = checkedItems.join(', ')
+      
+      if (checkedItems.length === 0) {
+        selectPlaceholder.textContent = 'Select Conditions'
+        selectPlaceholder.classList.remove('active')
+      } else {
+        selectPlaceholder.classList.add('active')
+      }
+    })
+  }
+
+  Array.from(select.options).forEach((option, index) => {
+    createDropdownItem(option, index)
+    option.remove()
+  })
+
+  const closeSelect = document.querySelector('.multiple-select__arrow')
+  closeSelect.addEventListener('click', () => {
+    customSelectDropdown.classList.toggle('open')
+  })
+
+  const multipleSelect = document.querySelector('.multiple-select')
+  multipleSelect.addEventListener('click', () => {
+    customSelectDropdown.classList.toggle('open')
+  })
 }

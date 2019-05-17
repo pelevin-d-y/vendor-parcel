@@ -1,0 +1,67 @@
+.truck-options__temperature {
+  padding-top: 10px;
+  padding-bottom: 17px;
+}
+
+.temperature {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.temperature__text {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+
+  font-size: 23px;
+  color: #FFFFFF;
+  letter-spacing: 0;
+}
+
+.temperature__range-wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  width: 267px;
+}
+
+.rangeSlider__fill__horizontal {
+  background: none;
+}
+
+.rangeSlider__horizontal {
+  height: 10px;
+  background-image: linear-gradient(269deg, #D01D00 0%, #4990B4 98%);
+}
+
+.rangeSlider__handle {
+  width: 30px;
+  height: 30px;
+
+  background: #FFFFFF;
+  border: 1px solid #979797;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.50);
+}
+
+.rangeSlider__handle::after {
+  display: none;
+}
+
+.temperature__celsius {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+
+  min-width: 53px;
+  min-height: 36px;
+  
+  font-size: 23px;
+  color: #FFFFFF;
+  letter-spacing: -0.23px;
+  text-align: left;
+
+  background: #333333;
+  border-radius: 8px;
+}

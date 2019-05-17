@@ -71,3 +71,15 @@
   border-radius: 50%;
   background: #4A90E2;
 }
+
+.truck__temperature {
+  flex: 1 0 auto;
+  width: 93px;
+  padding-top: 6px;
+  align-self: flex-start;
+
+  font-size: 16px;
+  color: #FFFFFF;
+  letter-spacing: 0.05px;
+  text-align: left;
+}

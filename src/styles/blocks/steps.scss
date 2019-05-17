@@ -1,5 +1,10 @@
 .truck.step {
   margin-bottom: 0;
+  padding-right: 16px;
+}
+
+.truck.step .truck__name {
+  padding-right: 10px;
 }
 
 .truck-options {
@@ -22,11 +27,11 @@
   width: 47%;
 }
 
-.truck-options__select-wrapper .choices__inner {
+.dark-select .choices__inner {
   background: #333333;
 }
 
-.truck-options__select-wrapper .choices__list {
+.dark-select .choices__list {
   background: #333333;
 }
 

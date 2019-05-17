@@ -38,6 +38,8 @@ html {
 }
 
 body {
+  min-height: 350px;
+
   background: #1a1a1a;
   color: #FFFFFF;
   font-weight: 300;
@@ -89,4 +91,8 @@ body {
 
 .disabled {
   pointer-events: none;
+}
+
+.is-hidden {
+  display: none;
 }

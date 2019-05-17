@@ -7,6 +7,14 @@
   background: #4b4b4b;
 }
 
+.choices__list--dropdown .choices__list {
+  height: 100%;
+}
+
+.choices__list.choices__list--dropdown {
+  height: 150px;
+}
+
 .is-highlighted {
   background: #4b4b4b !important;
 }
