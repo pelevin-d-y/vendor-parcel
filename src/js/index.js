@@ -2,11 +2,11 @@
 
 import Choices from 'choices.js'
 import rangeSlider from 'rangeslider-pure'
+import validate from 'validate.js'
 
-
-const searchForm = document.querySelector('.search-form')
-if (searchForm) {
-  const searchOpenBtn = document.querySelector('.controls__search')
+const searchOpenBtn = document.querySelector('.controls__search')
+if (searchOpenBtn) {
+  const searchForm = document.querySelector('.search-form')
   searchOpenBtn.addEventListener('click', () => {
     searchForm.classList.toggle('open')
   })
@@ -117,7 +117,7 @@ if (truckOptions.length) {
     const key = event.target.dataset.name
     truckValues[key] = event.detail.choice.value
 
-    let isSelected = Object.values(truckValues).indexOf('placeholder') === -1
+    let isSelected = Object.values(truckValues).indexOf('') === -1
     const stepButton = document.querySelector('.step1-button')
 
     if (isSelected) {
@@ -175,7 +175,7 @@ if (conditions) {
     
     let optionEl = document.createElement('option');
     optionEl.value = item.dataset.value
-    optionEl.setAttribute('selected', 'selected')
+    optionEl.setAttribute('selected', '')
     optionEl.textContent = item.textContent
     select.appendChild(optionEl)
   }
@@ -229,7 +229,12 @@ if (conditions) {
   const multipleSelect = document.querySelector('.multiple-select')
   multipleSelect.addEventListener('click', () => {
     customSelectDropdown.classList.toggle('open')
-  })
+  }) 
+}
 
-  
+// login 
+
+const login = document.querySelector('.login')
+if (login) {
+  console.log(validate)
 }

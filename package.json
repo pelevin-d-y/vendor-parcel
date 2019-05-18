@@ -21,10 +21,10 @@
   "dependencies": {
     "autoprefixer": "^9.5.1",
     "choices.js": "^7.0.0",
-    "jquery": "^3.4.1",
     "normalize.css": "^8.0.1",
     "postcss-modules": "^1.4.1",
     "push-dir": "^0.4.1",
-    "rangeslider-pure": "^0.4.9"
+    "rangeslider-pure": "^0.4.9",
+    "validate.js": "^0.12.0"
   }
 }

@@ -5,6 +5,24 @@
   transition: all 0.3s ease-out;
 }
 
+.unscheduled .search-form,
+.vendor .search-form {
+  max-height: 400px;
+}
+
+.vendor .controls__search {
+  display: none;
+}
+
+.vendor .controls {
+  margin-bottom: 15px;
+}
+
+.unscheduled .search-form {
+  margin-bottom: 20px;
+}
+
+
 .search-form.open {
   padding-top: 20px;
   max-height: 200px;

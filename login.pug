@@ -10,12 +10,12 @@ block content
   main.main.container
     form.login
       .login__input-wrapper
-        input(type="text" placeholder="Email")
+        input(type="email" placeholder="Email" required)
       .login__input-wrapper
-        input(type="text" placeholder="Password")
+        input(type="password" placeholder="Password" required)
       .login__input-wrapper.login__input-select-wrapper
-        select.login-select
-          option(value="placeholder" placeholder) Location
+        select.login-select(required)
+          option(value="" placeholder) Location
           option(value="location1") location1
           option(value="location2") location2
           option(value="location3") location3
