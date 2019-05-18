@@ -3,7 +3,21 @@
 import Choices from 'choices.js'
 import rangeSlider from 'rangeslider-pure'
 
-// toggle New In Progress
+
+const searchForm = document.querySelector('.search-form')
+if (searchForm) {
+  const searchOpenBtn = document.querySelector('.controls__search')
+  searchOpenBtn.addEventListener('click', () => {
+    searchForm.classList.toggle('open')
+  })
+}
+
+const selectedOption = (select, value) => {
+  Array.from(select.options).forEach(option => option.removeAttribute('selected'))
+  document.querySelector(`[value=${value}]`).setAttribute('selected', '')
+}
+
+// toggle New/In Progress
 var toggle = document.querySelector('.toggle');
 const toggleSelect = document.querySelector('.toggle__select')
 
@@ -18,18 +32,10 @@ if (toggle) {
     } else {
       toggleValue = 'new'
     }
+    
+    selectedOption(toggleSelect, toggleValue)
     toggleSelect.value = toggleValue
   });
-
-
-}
-
-const searchForm = document.querySelector('.search-form')
-if (searchForm) {
-  const searchOpenBtn = document.querySelector('.controls__search')
-  searchOpenBtn.addEventListener('click', () => {
-    searchForm.classList.toggle('open')
-  })
 }
 
 // day switcer
@@ -41,6 +47,7 @@ if (switcher) {
   var switcherType = document.querySelector('.switcher__type');
   const switcherSelect = document.querySelector('.switcher__select')
   switcherSelect.value = 'today'
+
   var switchDay = function(dir) {
     switch (true) {
       case switcherType.textContent === 'Today':
@@ -59,7 +66,7 @@ if (switcher) {
         break;
     }
 
-    
+    selectedOption(switcherSelect, switcherSelect.value)
   }
   if (switcherRightArrow || switcherLeftArrow) {
     switcherRightArrow.addEventListener('click', function() {
@@ -155,44 +162,62 @@ if (conditions) {
   const selectPlaceholder =  document.querySelector('.multiple-select__placeholder')
   let checkedItems = []
 
-  const createDropdownItem = (option, index) => {
+  const removeOptionFromSelect = (item) => {
+    item.classList.remove('checked')
+    checkedItems.splice(checkedItems.indexOf(item.textContent), 1)
+    document.querySelector(`[value=${item.dataset.value}]`).remove()
+  }
+
+  const addOptionToSelect = (item) => {
+    item.classList.add('checked')
+    const isPresent = checkedItems.indexOf(item.textContent) !== -1
+    checkedItems = isPresent ? checkedItems : [...checkedItems, item.textContent] 
+    
+    let optionEl = document.createElement('option');
+    optionEl.value = item.dataset.value
+    optionEl.setAttribute('selected', 'selected')
+    optionEl.textContent = item.textContent
+    select.appendChild(optionEl)
+  }
+
+  const createItem = (option) => {
     let item = document.createElement('div');
     item.dataset.value = option.value
     item.textContent = option.textContent
-    item.className = `multiple-select__dropdown-item multiple-select__dropdown-item-${index}`
-    customSelectDropdown.appendChild(item)
-
-    item.addEventListener('click', () => {
-      if (item.classList.contains('checked')) {
-        item.classList.remove('checked')
-        checkedItems.splice(checkedItems.indexOf(item.textContent), 1)
-        document.querySelector(`[value=${item.dataset.value}]`).remove()
-
-      } else {
-        item.classList.add('checked')
-        const isPresent = checkedItems.indexOf(item.textContent) !== -1
-        checkedItems = isPresent ? checkedItems : [...checkedItems, item.textContent] 
-        
-        let optionEl = document.createElement('option');
-        optionEl.value = item.dataset.value
-        optionEl.setAttribute('selected', 'selected')
-        optionEl.textContent = item.textContent
-        select.appendChild(optionEl)
-      }
-
-      selectPlaceholder.textContent = checkedItems.join(', ')
-      
-      if (checkedItems.length === 0) {
-        selectPlaceholder.textContent = 'Select Conditions'
-        selectPlaceholder.classList.remove('active')
-      } else {
-        selectPlaceholder.classList.add('active')
-      }
-    })
+    item.className = `multiple-select__dropdown-item`
+    return item
   }
 
-  Array.from(select.options).forEach((option, index) => {
-    createDropdownItem(option, index)
+  const changeMutipleSelectText = () => {
+    selectPlaceholder.textContent = checkedItems.join(', ')
+      
+    if (checkedItems.length === 0) {
+      selectPlaceholder.textContent = 'Select Conditions'
+      selectPlaceholder.classList.remove('active')
+    } else {
+      selectPlaceholder.classList.add('active')
+    }
+  }
+
+  const createDropdownItem = (option) => {
+    let item = createItem(option)
+    customSelectDropdown.appendChild(item)
+    
+    function itemHandler() {
+      if (item.classList.contains('checked')) {
+        removeOptionFromSelect(item)
+      } else {
+        addOptionToSelect(item)
+      }
+
+      changeMutipleSelectText()
+    }
+
+    item.addEventListener('click', itemHandler)
+  }
+
+  Array.from(select.options).forEach((option) => {
+    createDropdownItem(option)
     option.remove()
   })
 
@@ -205,4 +230,6 @@ if (conditions) {
   multipleSelect.addEventListener('click', () => {
     customSelectDropdown.classList.toggle('open')
   })
+
+  
 }
