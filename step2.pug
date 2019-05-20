@@ -12,10 +12,10 @@ block content
         .temperature
           .temperature__text Temperature
           .temperature__range-wrapper
-            input.temperature__range(type="range" min="-20" max="100" step="1")
+            input.temperature__range(type="range" min="-20" max="99" step="1")
           .temperature__celsius
-            span.temperature__celsius-digits
-              | --
+            input.temperature__celsius-digits(type="number" min="-20" max="99" placeholder="--")
+              
             sup o
         .conditions
           .conditions__select-wrapper.dark-select
@@ -37,7 +37,7 @@ block content
         a.back(href="#")
           span.back__icon
         .footer__buttons
-          button.btn.btn__accept.disabled(href="#")
+          button.btn.btn__accept.disabled
             | Accept
-          button.btn.btn__reject(href="#")
+          button.btn.btn__reject
             | Reject

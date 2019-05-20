@@ -135,11 +135,12 @@ const slider = document.querySelector('.temperature__range')
 if (slider) {
   const celsios = document.querySelector('.temperature__celsius-digits')
   const accept = document.querySelector('.btn__accept')
+
   let goodFrozen = 35
 
   rangeSlider.create(slider, {
     onSlide: function(position, value) {
-      celsios.textContent = position
+      celsios.value = position
       if (goodFrozen >= position) {
         accept.classList.remove('disabled')
         accept.classList.remove('btn__red')
@@ -150,6 +151,16 @@ if (slider) {
         accept.classList.add('btn__red')
       }
     }
+  })
+
+  celsios.addEventListener('input', (event) => {
+    rangeSlider.value = celsios.value
+
+    if (celsios.value === '') return
+
+    slider.rangeSlider.update({
+      value : celsios.value,
+    }, true);
   })
 }
 

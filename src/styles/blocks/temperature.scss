@@ -65,3 +65,16 @@
   background: #333333;
   border-radius: 8px;
 }
+
+.temperature__celsius-digits {
+  width: 34px;
+  background: none;
+  color: #ffffff;
+  font-weight: 300;
+  border: none;
+
+  &::placeholder {
+    color: #ffffff;
+  }
+}
+
