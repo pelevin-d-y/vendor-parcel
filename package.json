@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "parcel index.pug",
-    "build": "parcel build --no-minify index.pug parcel --public-url ./",
+    "build": "parcel build index.pug parcel --public-url ./",
     "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
