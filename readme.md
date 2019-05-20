@@ -4,8 +4,8 @@ production: parcel build index.pug parcel --public-url ./
 
 
 **production not minimized.**  
-create pug.config.json with
 
+create pug.config.json with
 ```
   module.exports = {
     pretty: true
