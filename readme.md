@@ -3,7 +3,7 @@ develop: parcel index.pug
 production: parcel build index.pug parcel --public-url ./  
 
 
-**production not minimized.**
+**production not minimized.**  
 create pug.config.json with
 
 ```
