@@ -154,9 +154,12 @@ if (slider) {
   })
 
   celsios.addEventListener('input', (event) => {
+    accept.classList.remove('disabled')
     rangeSlider.value = celsios.value
-
-    if (celsios.value === '') return
+    if (celsios.value === '') {
+      accept.classList.add('disabled')
+      return
+    }
 
     slider.rangeSlider.update({
       value : celsios.value,
@@ -176,7 +179,7 @@ if (conditions) {
   const removeOptionFromSelect = (item) => {
     item.classList.remove('checked')
     checkedItems.splice(checkedItems.indexOf(item.textContent), 1)
-    document.querySelector(`[value=${item.dataset.value}]`).remove()
+    document.querySelector(`.multiple__option-${item.dataset.value}`).remove()
   }
 
   const addOptionToSelect = (item) => {
@@ -186,6 +189,7 @@ if (conditions) {
     
     let optionEl = document.createElement('option');
     optionEl.value = item.dataset.value
+    optionEl.classList.add(`multiple__option-${item.dataset.value}`)
     optionEl.setAttribute('selected', '')
     optionEl.textContent = item.textContent
     select.appendChild(optionEl)
