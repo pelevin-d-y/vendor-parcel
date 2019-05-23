@@ -12,7 +12,12 @@
 }
 
 .choices__list.choices__list--dropdown {
-  height: 150px;
+  position: fixed;
+  top: 30px;
+  left: 20px;
+  right: 20px;
+  height: 90vh;
+  width: auto;
 }
 
 .is-highlighted {
