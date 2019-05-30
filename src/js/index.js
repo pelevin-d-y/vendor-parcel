@@ -88,15 +88,6 @@ if (burger) {
   })
 }
 
-
-// login select
-const select = document.querySelector('.login-select')
-if (select) {
-  new Choices(select, {
-    searchEnabled: false
-  });
-}
-
 // step1 truck selects
 
 const truckOptions = Array.from(document.querySelectorAll('.truck-options__select'))
@@ -130,59 +121,56 @@ if (truckOptions.length) {
   } 
 } 
 
-// slider range
-const slider = document.querySelector('.temperature__range')
-if (slider) {
-  const celsios = document.querySelector('.temperature__celsius-digits')
-  const accept = document.querySelector('.btn__accept')
-  const reject = document.querySelector('.btn__reject')
-
-  let goodFrozen = 35
-
-  rangeSlider.create(slider, {
-    onSlide: function(position, value) {
-      celsios.value = position
-      reject.classList.remove('disabled')
-      if (goodFrozen >= position) {
-        accept.classList.remove('disabled')
-        accept.classList.remove('btn__red')
-        accept.classList.add('btn__blue')
-      } else if (goodFrozen < position) {
-        accept.classList.remove('disabled')
-        accept.classList.remove('btn__blue')
-        accept.classList.add('btn__red')
-      }
-    }
-  })
-
-  celsios.addEventListener('input', (event) => {
-    accept.classList.remove('disabled')
-    rangeSlider.value = celsios.value
-    if (celsios.value === '') {
-      accept.classList.add('disabled')
-      reject.classList.add('disabled')
-      return
-    }
-
-    slider.rangeSlider.update({
-      value : celsios.value,
-    }, true);
-  })
-}
-
-//conditions
-
+//conditions and temperature
 const conditions = document.querySelector('.conditions')
+
 if (conditions) {
   const select = document.querySelector('.conditions__select')
   const customSelectDropdown = document.querySelector('.multiple-select__dropdown')
   const selectPlaceholder =  document.querySelector('.multiple-select__placeholder')
   let checkedItems = []
 
+  let temperature = ''
+  let goodFrozen = 35
+  const accept = document.querySelector('.btn__accept')
+  const reject = document.querySelector('.btn__reject')
+
+  let conditionsValue = []
+
+  const checkStatusPage = (temperature) => {
+    if ((conditionsValue.length === 0) || (temperature === '')) {
+      reject.classList.add('disabled')
+      accept.classList.remove('btn__blue')
+      accept.classList.remove('btn__red')
+      accept.classList.add('disabled')
+      return
+    }
+
+    if ((conditionsValue.length !== 0) && (goodFrozen >= temperature)) {
+      reject.classList.remove('disabled')
+      accept.classList.remove('disabled')
+      accept.classList.remove('btn__red')
+      accept.classList.add('btn__blue')
+
+    } else if ((goodFrozen < temperature) && (conditionsValue.length !== 0)) {
+      reject.classList.remove('disabled')
+      accept.classList.remove('disabled')
+      accept.classList.remove('btn__blue')
+      accept.classList.add('btn__red')
+    }
+  }
+
+  const changeConditionsValue = (val) => {
+    conditionsValue = val
+  }
+
   const removeOptionFromSelect = (item) => {
     item.classList.remove('checked')
     checkedItems.splice(checkedItems.indexOf(item.textContent), 1)
     document.querySelector(`.multiple__option-${item.dataset.value}`).remove()
+
+    changeConditionsValue(select.options)
+    checkStatusPage(temperature)
   }
 
   const addOptionToSelect = (item) => {
@@ -196,6 +184,9 @@ if (conditions) {
     optionEl.setAttribute('selected', '')
     optionEl.textContent = item.textContent
     select.appendChild(optionEl)
+
+    changeConditionsValue(select.options)
+    checkStatusPage(temperature)
   }
 
   const createItem = (option) => {
@@ -248,11 +239,44 @@ if (conditions) {
   multipleSelect.addEventListener('click', () => {
     customSelectDropdown.classList.toggle('open')
   }) 
+
+  
+  const slider = document.querySelector('.temperature__range')
+  const celsios = document.querySelector('.temperature__celsius-digits')
+
+  rangeSlider.create(slider, {
+    onSlide: function(position, value) {
+      celsios.value = position
+      temperature = position
+      checkStatusPage(temperature)
+    }
+  })
+
+  celsios.addEventListener('input', (event) => {
+    accept.classList.remove('disabled')
+    rangeSlider.value = celsios.value
+    temperature = celsios.value
+
+    if (celsios.value === '') {
+      return checkStatusPage(temperature)
+    }
+
+    slider.rangeSlider.update({
+      value : celsios.value,
+    }, true);
+  })
 }
+
+
 
 // login 
 
 const login = document.querySelector('.login')
 if (login) {
   console.log(validate)
+
+  const loginSelect = document.querySelector('.login-select')
+  new Choices(loginSelect, {
+    searchEnabled: false
+  });
 }
